@@ -5,12 +5,7 @@ import clsx from 'clsx'
 import { Button } from '@/components/Button'
 import { Card } from '@/components/Card'
 import { Container } from '@/components/Container'
-import {
-  GitHubIcon,
-  InstagramIcon,
-  LinkedInIcon,
-  XIcon,
-} from '@/components/SocialIcons'
+import { Carousel } from '@/components/Carousel'
 import logoAirbnb from '@/images/logos/airbnb.svg'
 import logoFacebook from '@/images/logos/facebook.svg'
 import logoPlanetaria from '@/images/logos/planetaria.svg'
@@ -22,6 +17,12 @@ import image4 from '@/images/photos/image-4.jpg'
 import image5 from '@/images/photos/image-5.jpg'
 import { getAllArticles } from '@/lib/articles'
 import { formatDate } from '@/lib/formatDate'
+import CarouselWithNav from './../components/CarouselWithNav';
+
+export const metadata = {
+  title: 'Home',
+  description: 'Welcome to our website',
+}
 
 function MailIcon(props) {
   return (
@@ -254,43 +255,42 @@ function Photos() {
   )
 }
 
+const images = [
+  {
+    src: '/images/photos/render1.jpg',
+    title: 'Modern Living Room',
+    description: 'Contemporary design with natural lighting and minimalist furniture'
+  },
+  {
+    src: '/images/photos/render2.jpg',
+    title: 'Kitchen Design',
+    description: 'Sleek kitchen with marble countertops and modern appliances'
+  },
+  {
+    src: '/images/photos/render3.jpg',
+    title: 'Bedroom Suite',
+    description: 'Cozy bedroom with warm tones and comfortable seating area'
+  },
+  {
+    src: '/images/photos/render4.jpg',
+    title: 'Dining Area',
+    description: 'Elegant dining space perfect for entertaining guests'
+  },
+  {
+    src: '/images/photos/render5.jpg',
+    title: 'Bathroom',
+    description: 'Luxurious bathroom with spa-like amenities and natural stone'
+  },
+];
+
 export default async function Home() {
   let articles = (await getAllArticles()).slice(0, 4)
 
   return (
     <>
-      <Container className="mt-9">
-        <div className="max-w-2xl">
-          <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
-            Software designer, founder, and amateur astronaut.
-          </h1>
-          <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            I’m Spencer, a software designer and entrepreneur based in New York
-            City. I’m the founder and CEO of Planetaria, where we develop
-            technologies that empower regular people to explore space on their
-            own terms.
-          </p>
-          <div className="mt-6 flex gap-6">
-            <SocialLink href="#" aria-label="Follow on X" icon={XIcon} />
-            <SocialLink
-              href="#"
-              aria-label="Follow on Instagram"
-              icon={InstagramIcon}
-            />
-            <SocialLink
-              href="#"
-              aria-label="Follow on GitHub"
-              icon={GitHubIcon}
-            />
-            <SocialLink
-              href="#"
-              aria-label="Follow on LinkedIn"
-              icon={LinkedInIcon}
-            />
-          </div>
-        </div>
-      </Container>
-      <Photos />
+      <div className="mt-9 mr-9 ml-9">
+        <CarouselWithNav images={images} />
+      </div>
       <Container className="mt-24 md:mt-28">
         <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
           <div className="flex flex-col gap-16">

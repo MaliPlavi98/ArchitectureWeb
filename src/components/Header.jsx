@@ -12,8 +12,8 @@ import {
   PopoverPanel,
 } from '@headlessui/react'
 import clsx from 'clsx'
-
-import { Container } from '@/components/Container'
+import { Menu, Mail, Phone } from 'lucide-react'
+import { Container, ContainerOuter } from '@/components/Container'
 import avatarImage from '@/images/avatar.jpg'
 
 function CloseIcon(props) {
@@ -23,20 +23,6 @@ function CloseIcon(props) {
         d="m17.25 6.75-10.5 10.5M6.75 6.75l10.5 10.5"
         fill="none"
         stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  )
-}
-
-function ChevronDownIcon(props) {
-  return (
-    <svg viewBox="0 0 8 6" aria-hidden="true" {...props}>
-      <path
-        d="M1.75 1.75 4 4.25l2.25-2.5"
-        fill="none"
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -91,8 +77,7 @@ function MobileNavigation(props) {
   return (
     <Popover {...props}>
       <PopoverButton className="group flex items-center rounded-full bg-white/90 px-4 py-2 text-sm font-medium text-zinc-800 shadow-lg ring-1 shadow-zinc-800/5 ring-zinc-900/5 backdrop-blur-sm dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10 dark:hover:ring-white/20">
-        Menu
-        <ChevronDownIcon className="ml-3 h-auto w-2 stroke-zinc-500 group-hover:stroke-zinc-700 dark:group-hover:stroke-zinc-400" />
+        <Menu size={32} color="white" strokeWidth={2} />
       </PopoverButton>
       <PopoverBackdrop
         transition
@@ -145,20 +130,6 @@ function NavItem({ href, children }) {
         )}
       </Link>
     </li>
-  )
-}
-
-function DesktopNavigation(props) {
-  return (
-    <nav {...props}>
-      <ul className="flex rounded-full bg-white/90 px-3 text-sm font-medium text-zinc-800 shadow-lg ring-1 shadow-zinc-800/5 ring-zinc-900/5 backdrop-blur-sm dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10">
-        <NavItem href="/about">About</NavItem>
-        <NavItem href="/articles">Articles</NavItem>
-        <NavItem href="/projects">Projects</NavItem>
-        <NavItem href="/speaking">Speaking</NavItem>
-        <NavItem href="/uses">Uses</NavItem>
-      </ul>
-    </nav>
   )
 }
 
@@ -333,89 +304,19 @@ export function Header() {
 
   return (
     <>
-      <header
-        className="pointer-events-none relative z-50 flex flex-none flex-col"
-        style={{
-          height: 'var(--header-height)',
-          marginBottom: 'var(--header-mb)',
-        }}
-      >
-        {isHomePage && (
-          <>
-            <div
-              ref={avatarRef}
-              className="order-last mt-[calc(--spacing(16)-(--spacing(3)))]"
-            />
-            <Container
-              className="top-0 order-last -mb-3 pt-3"
-              style={{
-                position: 'var(--header-position)',
-              }}
-            >
-              <div
-                className="top-(--avatar-top,--spacing(3)) w-full"
-                style={{
-                  position: 'var(--header-inner-position)',
-                }}
-              >
-                <div className="relative">
-                  <AvatarContainer
-                    className="absolute top-3 left-0 origin-left transition-opacity"
-                    style={{
-                      opacity: 'var(--avatar-border-opacity, 0)',
-                      transform: 'var(--avatar-border-transform)',
-                    }}
-                  />
-                  <Avatar
-                    large
-                    className="block h-16 w-16 origin-left"
-                    style={{ transform: 'var(--avatar-image-transform)' }}
-                  />
-                </div>
-              </div>
-            </Container>
-          </>
-        )}
-        <div
-          ref={headerRef}
-          className="top-0 z-10 h-16 pt-6"
-          style={{
-            position: 'var(--header-position)',
-          }}
-        >
-          <Container
-            className="top-(--header-top,--spacing(6)) w-full"
-            style={{
-              position: 'var(--header-inner-position)',
-            }}
-          >
-            <div className="relative flex gap-4">
-              <div className="flex flex-1">
-                {!isHomePage && (
-                  <AvatarContainer>
-                    <Avatar />
-                  </AvatarContainer>
-                )}
-              </div>
-              <div className="flex flex-1 justify-end md:justify-center">
-                <MobileNavigation className="pointer-events-auto md:hidden" />
-                <DesktopNavigation className="pointer-events-auto hidden md:block" />
-              </div>
-              <div className="flex justify-end md:flex-1">
-                <div className="pointer-events-auto">
-                  <ThemeToggle />
-                </div>
-              </div>
-            </div>
-          </Container>
+      <header className="fixed top-0 right-0 left-0 z-50 flex items-center border-b-1 border-zinc-400 bg-white px-4 shadow-md sm:px-8 dark:bg-zinc-900">
+        <div className="flex h-16 flex-1 items-center justify-start">
+          <MobileNavigation className="pointer-events-auto" />
+        </div>
+        <div className="flex-col">
+          <div className="hidden h-16 items-center sm:flex">
+            <Mail/> <span className="pl-1.5">ivan.zovkic@optimit.hr</span>
+          </div>
+          <div className="hidden h-16 items-center sm:flex">
+            <Phone /> <span className="pl-1.5">+385 91 123 4567</span>
+          </div>
         </div>
       </header>
-      {isHomePage && (
-        <div
-          className="flex-none"
-          style={{ height: 'var(--content-offset)' }}
-        />
-      )}
     </>
   )
 }
