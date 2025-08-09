@@ -304,17 +304,37 @@ export function Header() {
 
   return (
     <>
-      <header className="fixed top-0 right-0 left-0 z-50 flex items-center border-b-1 border-zinc-400 bg-white px-4 shadow-md sm:px-8 dark:bg-zinc-900">
-        <div className="flex h-16 flex-1 items-center justify-start">
+      <header className="fixed top-0 right-0 left-0 z-50 flex items-center justify-between border-b-1 border-zinc-400 bg-white px-4 shadow-md sm:px-8 dark:bg-zinc-900">
+        <div className="flex items-center">
           <MobileNavigation className="pointer-events-auto" />
-        </div>
+        </div>      
+        <a href="/" className="flex items-center">
+          <div className="absolute left-1/2 transform -translate-x-1/2">
+            {/* Mobile version - abbreviated */}
+            <span className='text-lg sm:hidden'>
+              <span>Arh. Ured</span><span className='font-bold'> B. Bagarić</span>
+            </span>
+            {/* Tablet version - medium text */}
+            <span className='hidden sm:inline lg:hidden text-lg'>
+              <span>Arh. Ured</span><span className='font-bold'> B. Bagarić</span>
+            </span>
+            {/* Desktop version - full text */}
+            <span className='hidden lg:inline text-2xl'>
+              Arhitektonski ured <span className='font-bold text-2xl'>Branimir Bagarić</span>
+            </span>
+          </div>
+        </a>
         <div className="flex-col">
-          <div className="hidden h-16 items-center sm:flex">
-            <Mail/> <span className="pl-1.5">ivan.zovkic@optimit.hr</span>
-          </div>
-          <div className="hidden h-16 items-center sm:flex">
-            <Phone /> <span className="pl-1.5">+385 91 123 4567</span>
-          </div>
+          <a href="mailto:branimir.bagaric@gmail.com" className="pointer-events-auto">
+            <div className="hidden lg:flex h-16 items-center pt-5">
+              <Mail/> <span className="pl-1.5">branimir.bagaric@gmail.com</span>
+            </div>
+          </a>
+          <a href="tel:+385911234567" className="pointer-events-auto">
+            <div className="hidden lg:flex h-16 items-center pb-5">
+              <Phone /> <span className="pl-1.5">+385 91 123 4567</span>
+            </div>
+          </a>
         </div>
       </header>
     </>

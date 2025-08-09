@@ -1,7 +1,7 @@
 'use client'
 import { useKeenSlider } from 'keen-slider/react'
 import 'keen-slider/keen-slider.min.css'
-import { SquareArrowLeft, SquareArrowRight, ArrowRight, ArrowLeft } from 'lucide-react'
+import {ArrowRight, ArrowLeft } from 'lucide-react'
 
 export default function CarouselWithNav({ images }) {
   const [sliderRef, instance] = useKeenSlider({

@@ -34,3 +34,18 @@
   --text-9xl: 8rem;
   --text-9xl--line-height: 1;
 }
+
+@layer base {
+  html {
+    font-family: 'Work Sans', sans-serif;
+  }
+}
+
+* {
+  font-family: 'Work Sans', sans-serif !important;
+}
+
+
+.footer-text {
+  color: rgba(255,255,255,.7);
+}

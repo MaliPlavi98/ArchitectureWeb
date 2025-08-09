@@ -7,7 +7,7 @@ export function Layout({ children }) {
 
       <div className="relative flex w-full flex-col">
         <Header />
-        <main className="flex-auto pt-30">{children}</main>
+        <main className="flex-auto pt-15 lg:pt-30">{children}</main>
         <Footer />
       </div>
     </>
