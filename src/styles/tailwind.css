@@ -39,12 +39,36 @@
   html {
     font-family: 'Work Sans', sans-serif;
   }
+
+  /* Autofill styling fix for Chrome */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    /* Match Tailwind's border-gray-400 */
+    border: 1px solid rgb(156, 163, 175) !important;
+    border-color: rgb(156, 163, 175) !important;
+    outline: none !important;
+
+    /* Keep your background and text colors */
+    -webkit-box-shadow: 0 0 0px 1000px rgba(63, 63, 70, 0.15) inset !important;
+    -webkit-text-fill-color: rgb(228, 228, 231) !important;
+
+    /* Prevent yellow flash */
+    background-color: rgba(63, 63, 70, 0.15) !important;
+    transition: background-color 5000s ease-in-out 0s !important;
+  }
 }
 
 * {
   font-family: 'Work Sans', sans-serif !important;
 }
-
 
 .footer-text {
   color: rgba(255,255,255,.7);

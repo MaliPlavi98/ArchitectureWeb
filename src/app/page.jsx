@@ -1,7 +1,3 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import clsx from 'clsx'
-import { Button } from '@/components/Button'
 import { Card } from '@/components/Card'
 import { Container } from '@/components/Container'
 import CarouselWithNav from './../components/CarouselWithNav'
@@ -65,10 +61,10 @@ export const metadata = {
 function Article({ title, icon: Icon }) {
   return (
     <Card>
-      <Card.Title href={`/articles/`}>
+      <Card.Title href={`/`}>
         <div className="flex flex-col items-center justify-center">
-          <Icon size={150} strokeWidth={0.5} />
-          <h3 className="mt-4 text-lg font-semibold text-zinc-900 dark:text-zinc-100">
+          <Icon size={150} strokeWidth={0.5} className="text-zinc-200" />
+          <h3 className="mt-4 text-lg font-semibold text-zinc-200">
             {title}
           </h3>
         </div>
@@ -92,9 +88,9 @@ export default async function Home() {
           </div>
           <div className="space-y-10 lg:pl-16 xl:pl-24">
             <ContactForm />
-            <div className="border-1 p-6 dark:border-gray-400">
+            <div className="border-1 p-6 border-gray-400">
               <MapComponent />
-              <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+              <p className="mt-2 text-sm footer-text">
                 Adresa: Put Požara 2, Makarska
               </p>
             </div>

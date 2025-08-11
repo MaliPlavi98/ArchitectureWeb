@@ -1,5 +1,5 @@
 'use client'
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import { useForm, ValidationError } from '@formspree/react'
 import { ChevronDownIcon } from '@heroicons/react/16/solid'
 import ReCAPTCHA from 'react-google-recaptcha'
@@ -8,6 +8,32 @@ function ContactForm() {
   const [state, handleSubmit] = useForm('mzzvjdkw')
   const recaptchaRef = useRef(null)
   const [isRecaptchaVerified, setIsRecaptchaVerified] = useState(false)
+
+  // Add styles to handle autofill
+  useEffect(() => {
+    const style = document.createElement('style')
+    style.textContent = `
+      input:-webkit-autofill,
+      input:-webkit-autofill:hover,
+      input:-webkit-autofill:focus,
+      textarea:-webkit-autofill,
+      textarea:-webkit-autofill:hover,
+      textarea:-webkit-autofill:focus,
+      select:-webkit-autofill,
+      select:-webkit-autofill:hover,
+      select:-webkit-autofill:focus {
+        -webkit-box-shadow: 0 0 0 1000px rgba(63, 63, 70, 0.15) inset !important;
+        -webkit-text-fill-color: rgb(228, 228, 231) !important;
+        border: 1px solid rgb(156, 163, 175) !important;
+        background-color: rgba(63, 63, 70, 0.15) !important;
+      }
+    `
+    document.head.appendChild(style)
+
+    return () => {
+      document.head.removeChild(style)
+    }
+  }, [])
 
   const onRecaptchaChange = (value) => {
     setIsRecaptchaVerified(!!value)
@@ -34,11 +60,11 @@ function ContactForm() {
     <>
       {state.succeeded && (
         <div className="fixed inset-0 z-50 flex min-h-screen items-center justify-center bg-black/50">
-          <div className="mx-4 max-w-sm rounded-lg bg-white p-6 shadow-lg dark:bg-zinc-800">
-            <h2 className="mb-2 text-lg font-semibold text-teal-600 dark:text-teal-400">
+          <div className="mx-4 max-w-sm rounded-lg bg-white p-6 shadow-lg bg-zinc-800">
+            <h2 className="mb-2 text-lg font-semibold text-teal-600 text-teal-400">
               ✅ Forma je poslana!
             </h2>
-            <p className="text-sm text-zinc-700 dark:text-zinc-300">
+            <p className="text-sm text-zinc-200">
               Vaša poruka je uspješno poslana. Javit ćemo vam se uskoro.
             </p>
             <button
@@ -58,16 +84,16 @@ function ContactForm() {
         action={'https://formspree.io/f/mzzvjdkw'}
         method="POST"
         name="contactForm"
-        className="space-y-4 border-1 p-6 dark:border-gray-400"
+        className="space-y-4 p-6 border-1 border-gray-400"
       >
         <div className="flex justify-center">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-200">
+          <h2 className="text-2xl font-bold text-zinc-200">
             Kontaktirajte nas
           </h2>
         </div>
         <label
           htmlFor="email"
-          className="block text-sm font-medium text-zinc-900 dark:text-zinc-200"
+          className="block text-sm font-medium text-zinc-200"
         >
           Email Address
         </label>
@@ -78,13 +104,13 @@ function ContactForm() {
           placeholder="Email address"
           aria-label="Email address"
           required
-          className="w-full appearance-none bg-white px-3 py-2 shadow-md shadow-zinc-800/5 outline outline-zinc-900/10 placeholder:text-zinc-400 focus:ring-4 focus:ring-teal-500/10 focus:outline-teal-500 sm:text-sm dark:bg-zinc-700/15 dark:text-zinc-200 dark:outline-zinc-700 dark:placeholder:text-zinc-500 dark:focus:ring-teal-400/10 dark:focus:outline-teal-400"
+          className="w-full flex-1 appearance-none bg-zinc-700/15 px-3 py-2 shadow-md shadow-zinc-800/5 outline outline-zinc-700 placeholder:text-zinc-500 focus:ring-4 focus:ring-teal-400/10 focus:outline-teal-400 sm:text-sm text-zinc-200"
         />
         <ValidationError prefix="Email" field="email" errors={state.errors} />
 
         <label
           htmlFor="phone-number"
-          className="block text-sm font-medium text-zinc-900 dark:text-zinc-200"
+          className="block text-sm font-medium text-zinc-200"
         >
           Phone Number
         </label>
@@ -94,7 +120,7 @@ function ContactForm() {
               id="country"
               name="country code"
               aria-label="Country code"
-              className="w-24 appearance-none bg-black px-3 py-2 text-zinc-900 shadow-md shadow-zinc-800/5 outline outline-zinc-900/10 placeholder:text-zinc-400 focus:ring-4 focus:ring-teal-500/10 focus:outline-teal-500 sm:text-sm dark:text-zinc-200 dark:outline-zinc-700 dark:placeholder:text-zinc-500 dark:focus:ring-teal-400/10 dark:focus:outline-teal-400"
+              className="flex-1 appearance-none bg-zinc-700/15 px-3 py-2 shadow-md shadow-zinc-800/5 outline outline-zinc-700 placeholder:text-zinc-500 focus:ring-4 focus:ring-teal-400/10 focus:outline-teal-400 sm:text-sm text-zinc-200"
             >
               <option value="+385 HR">+385 HR</option>
               <option value="+43 AT">+43 AT</option>
@@ -105,7 +131,7 @@ function ContactForm() {
               <option value="+1 US">+1 US</option>
               <option value="+44 UK">+44 UK</option>
             </select>
-            <ChevronDownIcon className="pointer-events-none absolute top-1/2 right-2 h-5 w-5 -translate-y-1/2 text-zinc-400" />
+            <ChevronDownIcon className=" block pointer-events-none absolute top-1/2 right-2 h-5 w-5 -translate-y-1/2 text-zinc-400" />
           </div>
           <input
             id="phone"
@@ -114,14 +140,14 @@ function ContactForm() {
             placeholder="Broj mobitela"
             aria-label="Broj mobitela"
             required
-            className="flex-1 appearance-none bg-white px-3 py-2 text-zinc-900 shadow-md shadow-zinc-800/5 outline outline-zinc-900/10 placeholder:text-zinc-400 focus:ring-4 focus:ring-teal-500/10 focus:outline-teal-500 sm:text-sm dark:bg-zinc-700/15 dark:text-zinc-200 dark:outline-zinc-700 dark:placeholder:text-zinc-500 dark:focus:ring-teal-400/10 dark:focus:outline-teal-400"
+            className="flex-1 appearance-none bg-zinc-700/15 px-3 py-2 shadow-md shadow-zinc-800/5 outline outline-zinc-700 placeholder:text-zinc-500 focus:ring-4 focus:ring-teal-400/10 focus:outline-teal-400 sm:text-sm text-zinc-200"
           />
           <ValidationError prefix="Phone" field="phone" errors={state.errors} />
         </div>
 
         <label
           htmlFor="message"
-          className="block text-sm font-medium text-zinc-900 dark:text-zinc-200"
+          className="block text-sm font-medium text-zinc-200"
         >
           Message
         </label>
@@ -130,7 +156,7 @@ function ContactForm() {
           name="message"
           placeholder="Message"
           required
-          className="w-full appearance-none bg-white px-3 py-2 shadow-md shadow-zinc-800/5 outline outline-zinc-900/10 placeholder:text-zinc-400 focus:ring-4 focus:ring-teal-500/10 focus:outline-teal-500 sm:text-sm dark:bg-zinc-700/15 dark:text-zinc-200 dark:outline-zinc-700 dark:placeholder:text-zinc-500 dark:focus:ring-teal-400/10 dark:focus:outline-teal-400"
+          className="w-full appearance-none bg-zinc-700/15 px-3 py-2 shadow-md shadow-zinc-800/5 outline outline-zinc-700 placeholder:text-zinc-500 focus:ring-4 focus:ring-teal-400/10 focus:outline-teal-400 sm:text-sm text-zinc-200"
         />
         <ValidationError
           prefix="Message"
@@ -156,7 +182,7 @@ function ContactForm() {
           {state.submitting ? 'Submitting...' : 'Submit'}
         </button>
 
-        <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+        <p className="mt-2 text-sm footer-text">
           <span className="font-bold text-teal-500">*</span> Napomena: U slučaju
           ne dobivanja odgovora u roku 2 radna dana, nazvati na broj: +385 91
           123 4567
