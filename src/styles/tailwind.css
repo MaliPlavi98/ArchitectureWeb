@@ -36,10 +36,6 @@
 }
 
 @layer base {
-  html {
-    font-family: 'Work Sans', sans-serif;
-  }
-
   /* Autofill styling fix for Chrome */
   input:-webkit-autofill,
   input:-webkit-autofill:hover,
@@ -66,10 +62,12 @@
   }
 }
 
-* {
-  font-family: 'Work Sans', sans-serif !important;
-}
-
 .footer-text {
   color: rgba(255,255,255,.7);
+}
+
+select,
+select option {
+  background-color: rgba(63, 63, 70, 0.15); /* same as bg-zinc-700/15 */
+  color: rgb(228, 228, 231); /* matches text-zinc-200 */
 }

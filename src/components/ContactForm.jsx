@@ -27,6 +27,16 @@ function ContactForm() {
         border: 1px solid rgb(156, 163, 175) !important;
         background-color: rgba(63, 63, 70, 0.15) !important;
       }
+      
+      select {
+        background-color: rgba(63, 63, 70, 0.15) !important;
+        color: rgb(228, 228, 231) !important;
+      }
+      
+      select option {
+        background-color: rgba(63, 63, 70, 0.95) !important;
+        color: rgb(228, 228, 231) !important;
+      }
     `
     document.head.appendChild(style)
 
@@ -116,22 +126,25 @@ function ContactForm() {
         </label>
         <div className="flex space-x-2">
           <div className="relative grid shrink-0 grid-cols-1">
-            <select
-              id="country"
-              name="country code"
-              aria-label="Country code"
-              className="flex-1 appearance-none bg-zinc-700/15 px-3 py-2 shadow-md shadow-zinc-800/5 outline outline-zinc-700 placeholder:text-zinc-500 focus:ring-4 focus:ring-teal-400/10 focus:outline-teal-400 sm:text-sm text-zinc-200"
-            >
-              <option value="+385 HR">+385 HR</option>
-              <option value="+43 AT">+43 AT</option>
-              <option value="+387 BA">+387 BA</option>
-              <option value="+381 RS">+381 RS</option>
-              <option value="+49 DE">+49 DE</option>
-              <option value="+386 SI">+386 SI</option>
-              <option value="+1 US">+1 US</option>
-              <option value="+44 UK">+44 UK</option>
-            </select>
-            <ChevronDownIcon className=" block pointer-events-none absolute top-1/2 right-2 h-5 w-5 -translate-y-1/2 text-zinc-400" />
+          <select
+            id="country"
+            name="country code"
+            aria-label="Country code"
+            className="flex-1 appearance-none bg-zinc-700/15 text-zinc-200 pr-10 px-3 py-2 shadow-md shadow-zinc-800/5 outline outline-zinc-700 placeholder:text-zinc-500 focus:ring-4 focus:ring-teal-400/10 focus:outline-teal-400 sm:text-sm"
+          >
+            <option value="+385 HR">+385 HR</option>
+            <option value="+43 AT">+43 AT</option>
+            <option value="+387 BA">+387 BA</option>
+            <option value="+381 RS">+381 RS</option>
+            <option value="+49 DE">+49 DE</option>
+            <option value="+386 SI">+386 SI</option>
+            <option value="+1 US">+1 US</option>
+            <option value="+44 UK">+44 UK</option>
+          </select>
+
+          <ChevronDownIcon
+            className="pointer-events-none absolute top-1/2 right-3 h-5 w-5 -translate-y-1/2 text-zinc-400"
+          />
           </div>
           <input
             id="phone"

@@ -8,29 +8,29 @@ import ContactForm from '@/components/ContactForm'
 const images = [
   {
     src: '/images/photos/render1.jpg',
-    title: 'Modern Living Room',
+    title: 'Projekt1',
     description:
-      'Contemporary design with natural lighting and minimalist furniture',
+      'Nekakav opis projekta 1',
   },
   {
     src: '/images/photos/render2.jpg',
-    title: 'Kitchen Design',
-    description: 'Sleek kitchen with marble countertops and modern appliances',
+    title: 'Projekt2',
+    description: 'Nekakav opis projekta 2',
   },
   {
     src: '/images/photos/render3.jpg',
-    title: 'Bedroom Suite',
-    description: 'Cozy bedroom with warm tones and comfortable seating area',
+    title: 'Projekt3',
+    description: 'Nekakav opis projekta 3',
   },
   {
     src: '/images/photos/render4.jpg',
-    title: 'Dining Area',
-    description: 'Elegant dining space perfect for entertaining guests',
+    title: 'Projekt4',
+    description: 'Nekakav opis projekta 4',
   },
   {
     src: '/images/photos/render5.jpg',
-    title: 'Bathroom',
-    description: 'Luxurious bathroom with spa-like amenities and natural stone',
+    title: 'Projekt5',
+    description: 'Nekakav opis projekta 5',
   },
 ]
 
@@ -82,17 +82,35 @@ export default async function Home() {
       <Container className="mt-24 md:mt-28">
         <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
           <div className="flex flex-col gap-16">
-            {cards.map((card, index) => (
-              <Article key={index} title={card.title} icon={card.icon}/>
-            ))}
-          </div>
-          <div className="space-y-10 lg:pl-16 xl:pl-24">
             <ContactForm />
+          </div>
+          <div className="space-y-10 lg:pl-6 xl:pl-12">
+
+            <div className="flex flex-row justify-between border-1 p-6 border-gray-400">
+              <div>
+                <h4 className="text-lg font-semibold text-zinc-200">Adresa</h4>
+                <br />
+                <p className="mt-1 text-sm footer-text">
+                  Ured ovlaštenog arhitekta Branimir Bagarić
+                </p>
+                <br />
+                <p className="mt-1 text-sm footer-text">
+                  Put Požara 2, Makarska
+                </p>
+              </div>
+              <div className="ml-5">
+                <h4 className="text-lg font-semibold text-zinc-200">Kontakt</h4>
+                <br />
+                <p className="mt-1 text-sm footer-text">
+                  t/f. +385 99 513 4645
+                  <br />
+                  ured.branimir.bagaric@gmail.com
+                </p>
+              </div>
+            </div>
+
             <div className="border-1 p-6 border-gray-400">
               <MapComponent />
-              <p className="mt-2 text-sm footer-text">
-                Adresa: Put Požara 2, Makarska
-              </p>
             </div>
           </div>
         </div>

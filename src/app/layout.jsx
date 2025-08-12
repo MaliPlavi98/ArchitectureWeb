@@ -1,8 +1,14 @@
 import { Providers } from '@/app/providers'
 import { Layout } from '@/components/Layout'
+import { Work_Sans } from 'next/font/google'
 
 import 'keen-slider/keen-slider.min.css'
 import '@/styles/tailwind.css'
+
+const workSans = Work_Sans({
+  subsets: ['latin'],
+  display: 'swap',
+})
 
 export const metadata = {
   title: {
@@ -22,7 +28,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="h-full antialiased" suppressHydrationWarning>
-      <body className="flex h-full bg-zinc-50 bg-zinc-900 font-sans">
+      <body className={`flex h-full bg-zinc-50 bg-zinc-900 ${workSans.className}`}>
         <Providers>
           <div className="flex w-full">
             <Layout>{children}</Layout>
